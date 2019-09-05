@@ -1,8 +1,37 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model ApplicationDbContext
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div>
+    <h2>Links</h2>
+    <table class="table table-sm">
+        <thead>
+            <tr>
+                <th scope="col">URL</th>
+                <th>ShortURL</th>
+                <th>Date</th>
+                <th>Clicks</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var link in Model.Links)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(url => link.Url)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(shortUrl => link.ShortUrl)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(date => link.CreationDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(counter => link.Counter)
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
 </div>
