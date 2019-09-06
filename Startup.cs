@@ -32,10 +32,6 @@ namespace LinkShortener
 				options.CheckConsentNeeded = context => true;
 				options.MinimumSameSitePolicy = SameSiteMode.None;
 			});
-			//services.AddDbContext<ApplicationDbContext>(options =>
-			//	options.UseMySql(Configuration.GetConnectionString("DefaultConnection")));
-
-
 			services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 		}
 
