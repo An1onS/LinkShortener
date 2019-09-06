@@ -12,8 +12,7 @@ namespace LinkShortener.Controllers
 	{
 		public IActionResult Index()
 		{
-			var context = new ApplicationDbContext();
-			return View(context);
+			return View();
 		}
 
 		public IActionResult Privacy()

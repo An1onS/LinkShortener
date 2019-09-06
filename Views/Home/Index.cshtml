@@ -1,7 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@model ApplicationDbContext
+@*@model ApplicationDbContext*@
 
 <div>
     <h2>Links</h2>
@@ -15,7 +15,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var link in Model.Links)
+            @*@foreach (var link in Model.Links)
             {
                 <tr>
                     <td>
@@ -31,7 +31,7 @@
                         @Html.DisplayFor(counter => link.Counter)
                     </td>
                 </tr>
-            }
+            }*@
         </tbody>
     </table>
 </div>
