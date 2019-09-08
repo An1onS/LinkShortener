@@ -58,6 +58,7 @@ namespace LinkShortener.Controllers
         {
             if (ModelState.IsValid)
             {
+				link.CreationDate = DateTime.Today;
                 _context.Add(link);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -97,6 +98,7 @@ namespace LinkShortener.Controllers
             {
                 try
                 {
+					link.CreationDate = DateTime.Today;
                     _context.Update(link);
                     await _context.SaveChangesAsync();
                 }
@@ -149,5 +151,12 @@ namespace LinkShortener.Controllers
         {
             return _context.Links.Any(e => e.Id == id);
         }
+		public async Task<IActionResult> LinkClick(uint id)
+		{
+			var link = await _context.Links.FindAsync(id);
+			link.Counter++;
+			await _context.SaveChangesAsync();
+			return Redirect(link.ShortUrl);
+		}
     }
 }
