@@ -59,6 +59,10 @@ namespace LinkShortener
 				routes.MapRoute(
 					name: "default",
 					template: "{controller=Links}/{action=Index}/{id?}");
+				routes.MapRoute(
+					name:"fw",
+					template: "{controller=Links}/{FwLink}/{id?}"
+					);
 			});
 		}
 	}

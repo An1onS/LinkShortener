@@ -18,7 +18,7 @@ namespace LinkShortener.Controllers
         {
             _context = context;
         }
-
+		[Route("fw")]
 		public async Task<IActionResult> FwLink(string id)
 		{
 			if (id == null)
@@ -35,7 +35,7 @@ namespace LinkShortener.Controllers
 			link.Counter++;
 			_context.Update(link);
 			await _context.SaveChangesAsync();
-			return Redirect(link.Url);
+			return RedirectPermanent(new Uri(link.Url).AbsoluteUri);
 		}
 		// GET: Links
 		public async Task<IActionResult> Index()
