@@ -32,7 +32,9 @@ namespace LinkShortener.Controllers
 			{
 				return NotFound();
 			}
-
+			link.Counter++;
+			_context.Update(link);
+			await _context.SaveChangesAsync();
 			return Redirect(link.Url);
 		}
 		// GET: Links

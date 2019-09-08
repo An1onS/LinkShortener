@@ -35,7 +35,7 @@
                     @Html.DisplayFor(modelItem => item.Url)
                 </td>
                 <td>
-                    <a asp-action="FwLink" asp-route-id="@item.ShortUrl">@Html.DisplayFor(modelItem => item.ShortUrl)</a>
+                    <a asp-action="FwLink" asp-route-id="@item.ShortUrl" > @item.ShortUrl </a>
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.CreationDate)
