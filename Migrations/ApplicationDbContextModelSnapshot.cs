@@ -14,23 +14,21 @@ namespace LinkShortener.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.2-servicing-10034")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("LinkShortener.Models.Link", b =>
                 {
-                    b.Property<uint>("Id")
+                    b.Property<string>("ShortUrl")
                         .ValueGeneratedOnAdd();
 
                     b.Property<uint>("Counter");
 
                     b.Property<DateTime>("CreationDate");
 
-                    b.Property<string>("ShortUrl");
-
                     b.Property<string>("Url");
 
-                    b.HasKey("Id");
+                    b.HasKey("ShortUrl");
 
                     b.ToTable("Links");
                 });

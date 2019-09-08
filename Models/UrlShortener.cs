@@ -7,10 +7,10 @@ namespace LinkShortener.Models
 {
 	public static class UrlShortener
 	{
-		static string GetShortUrl(string url)
+		public static string GetShortUrl(string url)
 		{
 			var hash = url.GetHashCode();
-			return Convert.ToBase64String(BitConverter.GetBytes(hash));
+			return hash.ToString();//Convert.ToBase64String(BitConverter.GetBytes(hash));
 		}
 	}
 }

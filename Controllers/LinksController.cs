@@ -19,14 +19,30 @@ namespace LinkShortener.Controllers
             _context = context;
         }
 
-        // GET: Links
-        public async Task<IActionResult> Index()
+		public async Task<IActionResult> FwLink(string id)
+		{
+			if (id == null)
+			{
+				return NotFound();
+			}
+
+			var link = await _context.Links
+				.FirstOrDefaultAsync(m => m.ShortUrl == id);
+			if (link == null)
+			{
+				return NotFound();
+			}
+
+			return Redirect(link.Url);
+		}
+		// GET: Links
+		public async Task<IActionResult> Index()
         {
             return View(await _context.Links.ToListAsync());
         }
 
         // GET: Links/Details/5
-        public async Task<IActionResult> Details(uint? id)
+        public async Task<IActionResult> Details(string id)
         {
             if (id == null)
             {
@@ -34,7 +50,7 @@ namespace LinkShortener.Controllers
             }
 
             var link = await _context.Links
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ShortUrl == id);
             if (link == null)
             {
                 return NotFound();
@@ -54,11 +70,13 @@ namespace LinkShortener.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Url,ShortUrl,CreationDate,Counter")] Link link)
+        public async Task<IActionResult> Create([Bind("Url,ShortUrl,CreationDate,Counter")] Link link)
         {
             if (ModelState.IsValid)
             {
+				link.ShortUrl = UrlShortener.GetShortUrl(link.Url);
 				link.CreationDate = DateTime.Today;
+				link.Counter = 0;
                 _context.Add(link);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -67,7 +85,7 @@ namespace LinkShortener.Controllers
         }
 
         // GET: Links/Edit/5
-        public async Task<IActionResult> Edit(uint? id)
+        public async Task<IActionResult> Edit(string id)
         {
             if (id == null)
             {
@@ -87,9 +105,9 @@ namespace LinkShortener.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(uint id, [Bind("Id,Url,ShortUrl,CreationDate,Counter")] Link link)
+        public async Task<IActionResult> Edit(string id, [Bind("Url,ShortUrl,CreationDate,Counter")] Link link)
         {
-            if (id != link.Id)
+            if (id != link.ShortUrl)
             {
                 return NotFound();
             }
@@ -99,12 +117,13 @@ namespace LinkShortener.Controllers
                 try
                 {
 					link.CreationDate = DateTime.Today;
+					link.Counter = 0;
                     _context.Update(link);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!LinkExists(link.Id))
+                    if (!LinkExists(link.ShortUrl))
                     {
                         return NotFound();
                     }
@@ -119,7 +138,7 @@ namespace LinkShortener.Controllers
         }
 
         // GET: Links/Delete/5
-        public async Task<IActionResult> Delete(uint? id)
+        public async Task<IActionResult> Delete(string id)
         {
             if (id == null)
             {
@@ -127,7 +146,7 @@ namespace LinkShortener.Controllers
             }
 
             var link = await _context.Links
-                .FirstOrDefaultAsync(m => m.Id == id);
+                .FirstOrDefaultAsync(m => m.ShortUrl == id);
             if (link == null)
             {
                 return NotFound();
@@ -139,7 +158,7 @@ namespace LinkShortener.Controllers
         // POST: Links/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(uint id)
+        public async Task<IActionResult> DeleteConfirmed(string id)
         {
             var link = await _context.Links.FindAsync(id);
             _context.Links.Remove(link);
@@ -147,16 +166,9 @@ namespace LinkShortener.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool LinkExists(uint id)
+        private bool LinkExists(string id)
         {
-            return _context.Links.Any(e => e.Id == id);
+            return _context.Links.Any(e => e.ShortUrl == id);
         }
-		public async Task<IActionResult> LinkClick(uint id)
-		{
-			var link = await _context.Links.FindAsync(id);
-			link.Counter++;
-			await _context.SaveChangesAsync();
-			return Redirect(link.ShortUrl);
-		}
     }
 }
