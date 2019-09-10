@@ -17,4 +17,7 @@
     <PackageReference Include="pomelo.entityframeworkCore.Mysql" Version="2.2.0" />
   </ItemGroup>
 
+
+  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+
 </Project>

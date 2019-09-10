@@ -84,6 +84,7 @@ namespace LinkShortener.Controllers
 		}
 
 		// GET: Links/Edit/5
+		[HttpGet]
 		public async Task<IActionResult> Edit(string id)
 		{
 			if (id == null)

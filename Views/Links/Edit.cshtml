@@ -23,6 +23,7 @@
                         <label asp-for="ShortUrl" class="control-label"></label>
                     </dt>
                     <dd>
+                        <input asp-for="ShortUrl" class="form-control" readonly="readonly" type="hidden">
                         <a asp-action="FwLink" asp-route-id="@Model.ShortUrl">@Context.Request.Scheme://@Context.Request.Host@Uri.UnescapeDataString(Url.Action("FwLink", "Links", new { id = Model.ShortUrl }))</a>
                     </dd>
                 </dl>
