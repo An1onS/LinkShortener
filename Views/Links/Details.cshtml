@@ -20,8 +20,8 @@
             @Html.DisplayNameFor(model => model.ShortUrl)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.ShortUrl)
-        </dd>
+            <a asp-action="FwLink" asp-route-id="@Model.ShortUrl">@Uri.UnescapeDataString(Url.Action("FwLink", "Links", new { id = Model.ShortUrl }))</a>
+</dd>
         <dt class="col-sm-2">
             @Html.DisplayNameFor(model => model.CreationDate)
         </dt>
