@@ -14,12 +14,16 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="Url" class="control-label"></label>
-                <input asp-for="Url" class="form-control" type="url"/>
+                <input asp-for="Url" class="form-control" type="url" />
                 <span asp-validation-for="Url" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="ShortUrl" class="control-label"></label>
-                <a asp-action="FwLink" asp-route-id="@Model.ShortUrl">@Uri.UnescapeDataString(Url.Action("FwLink", "Links", new { id = Model.ShortUrl }))</a>
+                <dl>
+                    <dt>
+                        <label asp-for="ShortUrl" class="control-label"></label>
+                    </dt>
+                    <dd><a asp-action="FwLink" asp-route-id="@Model.ShortUrl">@Uri.UnescapeDataString(Url.Action("FwLink", "Links", new { id = Model.ShortUrl }))</a></dd>
+                </dl>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

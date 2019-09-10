@@ -7,21 +7,21 @@
 <h1>Index</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
 </p>
-<table class="table">
+<table class="table table-responsive-sm">
     <thead>
         <tr>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Url)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.ShortUrl)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.CreationDate)
             </th>
-            <th>
+            <th scope="col">
                 @Html.DisplayNameFor(model => model.Counter)
             </th>
             <th></th>
