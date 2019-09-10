@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -64,7 +63,7 @@ namespace LinkShortener
 
 		private static void UpdateDatabase(IApplicationBuilder app)
 		{
-			using( var scope = app.ApplicationServices
+			using (var scope = app.ApplicationServices
 				.GetRequiredService<IServiceScopeFactory>()
 				.CreateScope())
 			{

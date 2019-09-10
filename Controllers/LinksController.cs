@@ -15,6 +15,9 @@ namespace LinkShortener.Controllers
 		{
 			_context = context;
 		}
+		/// <summary>
+		/// Short link processing
+		/// </summary>
 		[Route("fw")]
 		public async Task<IActionResult> FwLink(string id)
 		{
@@ -73,7 +76,7 @@ namespace LinkShortener.Controllers
 		{
 			if (ModelState.IsValid)
 			{
-				link.ShortUrl = UrlShortener.GetShortUrl(link.Url);
+				link.ShortUrl = UrlHasher.GetHashedUrl(link.Url);
 				link.CreationDate = DateTime.Today;
 				link.Counter = 0;
 				_context.Add(link);
