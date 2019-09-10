@@ -47,7 +47,7 @@ namespace LinkShortener
 			app.UseHttpsRedirection();
 			app.UseStaticFiles();
 			app.UseCookiePolicy();
-
+			app.UseStatusCodePages();
 			app.UseMvc(routes =>
 			{
 				routes.MapRoute(
