@@ -35,7 +35,7 @@ namespace LinkShortener.Controllers
 			link.Counter++;
 			_context.Update(link);
 			await _context.SaveChangesAsync();
-			return RedirectPermanent(new Uri(link.Url).AbsoluteUri);
+			return Redirect(link.Url);
 		}
 		// GET: Links
 		public async Task<IActionResult> Index()
