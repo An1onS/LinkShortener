@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using LinkShortener.Models;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -60,7 +54,7 @@ namespace LinkShortener
 					name: "default",
 					template: "{controller=Links}/{action=Index}/{id?}");
 				routes.MapRoute(
-					name:"fw",
+					name: "fw",
 					template: "{controller=Links}/{FwLink}/{id?}"
 					);
 			});

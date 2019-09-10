@@ -1,5 +1,3 @@
-using System;
-
 namespace LinkShortener.Models
 {
 	public class ErrorViewModel
